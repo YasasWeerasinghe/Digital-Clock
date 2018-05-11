@@ -1,0 +1,84 @@
+Assignment 01 - Digital Clock
+
+Name 	:  Weerasinghe Pathirannahalage Don Ravindu Yasas Weerasinghe
+Student ID	:  2015041
+
+
+package assignment.pkg1;
+
+import java.awt.Font;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Calendar;
+import javax.swing.*;
+
+ public class Assignment1 extends JFrame {
+     JLabel txtLabel;
+     JLabel timeLabel;
+     JLabel dateLabel;
+     
+    public Assignment1(){
+        super("Assignment 1 Digital Clock");
+        setSize(400,230);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        JPanel timePanel=new JPanel();
+        timePanel.setBackground(Color.BLACK);
+        add(timePanel);
+        timeLabel = new JLabel();
+        dateLabel= new JLabel();
+        txtLabel = new JLabel();
+        timeLabel.setFont(new Font("DS-Digital",Font.PLAIN,72));
+        dateLabel.setFont(new Font("Eras Bold ITC",Font.PLAIN,36));
+        txtLabel.setFont(new Font("Eras Bold ITC" ,Font.PLAIN,16));
+        timeLabel.setForeground(Color.white);
+        dateLabel.setForeground(Color.green);
+        txtLabel.setForeground(Color.white);
+
+            add(timePanel);
+        
+        timePanel.add(timeLabel);
+        timePanel.add(dateLabel);
+        timePanel.add(txtLabel);
+        Timer timer = new Timer(100,new Listener());
+        timer.start();
+        setVisible(true);
+ }
+    public static void main(String[]args){
+        Assignment1 Timer = new Assignment1 ();
+        
+    }
+    class Listener implements ActionListener { 
+
+        @Override
+        
+            public void actionPerformed(ActionEvent e) {
+            Calendar calendar = Calendar.getInstance();
+            int hour = calendar.get(Calendar.HOUR_OF_DAY);
+            int min = calendar.get(Calendar.MINUTE);
+            int sec = calendar.get(Calendar.SECOND);
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH);
+                ++month;
+            int day = calendar.get(Calendar.DATE);
+
+            if(min<=9) {
+                timeLabel.setText(hour+" : "+"0"+min+" : "+sec);
+            }
+            if(sec<10){
+                timeLabel.setText(hour+" : "+min+" : "+"0"+sec);
+            }
+            else
+                timeLabel.setText(hour+" : "+min+" : "+sec);
+                txtLabel.setText("Course Work 1 -  Digital Clock");
+     
+                dateLabel.setText(day+" : "+month+" : "+year);
+        }
+        
+    }
+ }
+        
+   
+    
+
